@@ -29,7 +29,8 @@ const atLeastOneExists = (fields = []) => {
     return (req = request, res = response, next) => {
         let atLeastOneExists = false;
         fields.forEach((field) => {
-            atLeastOneExists ||= !!req.body[field];
+            // atLeastOneExists ||= !!req.body[field];
+            atLeastOneExists || (atLeastOneExists = !!req.body[field]);
         });
         if (!atLeastOneExists) {
             return res.status(400).json({
